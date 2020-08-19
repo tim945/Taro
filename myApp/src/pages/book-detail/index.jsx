@@ -1,4 +1,5 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro";
 import { View, Image, Text, Block } from "@tarojs/components";
 import { AtActivityIndicator } from "taro-ui";
 import API from "../../service/api";
@@ -43,10 +44,12 @@ export default class BookDetail extends Component {
   async loadBook() {
     try {
       let book;
-      if (this.$router.params.id) {
-        book = await API.get(`/books/${this.$router.params.id}`);
+      let { id, isbn } = Taro.getCurrentInstance().router.params
+      
+      if (id) {
+        book = await API.get(`/books/${id}`);
       } else {
-        book = await API.get(`/books?isbn=${this.$router.params.isbn}`);
+        book = await API.get(`/books?isbn=${isbn}`);
       }
       this.setState({
         book,

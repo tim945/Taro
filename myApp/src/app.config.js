@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-18 09:32:53
  * @LastEditors: tim
- * @LastEditTime: 2020-08-18 17:15:48
+ * @LastEditTime: 2020-08-19 17:47:05
  * @Description: 
  */
 export default {
@@ -10,6 +10,7 @@ export default {
     'pages/home/index',
     'pages/index/index',
     'pages/search/index',
+    'pages/book-detail/index',
   ],
   window: {
     backgroundTextStyle: 'light',

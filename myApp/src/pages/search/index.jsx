@@ -6,8 +6,8 @@ import { isISBN } from "../../utils/validator";
 import URL from "../../constants/urls";
 import SearchBar from "../../components/search-bar";
 import API from "../../service/api";
-// import NetworkError from "../../components/network-error";
-// import BookCard from "../../components/book-card";
+import NetworkError from "../../components/network-error";
+import BookCard from "../../components/book-card";
 
 import "./index.scss";
 
@@ -33,6 +33,10 @@ export default class Search extends Component {
   // 设置搜索关键字
   onChange(value) {
     this.setState({ value });
+
+    if (!value) {
+      this.setState({ searchResults:[] });
+    }
   }
 
   // 提交搜索
@@ -54,7 +58,8 @@ export default class Search extends Component {
       searchResults: []
     });
     try {
-      let { data } = await API.get(`/books?keyword=${value}`);
+      let data = await API.get(`/books?keyword=${value}`);
+      
       this.setState({
         isSearching: false,
         isError: false,
@@ -127,9 +132,10 @@ export default class Search extends Component {
       !isSearching &&
       !isError &&
       !(searchResults && searchResults.length) &&
-      history.length;
+      history.length>0;
+      
     const showResults =
-      !isSearching && !isError && (searchResults && searchResults.length);
+      !isSearching && !isError && (searchResults && searchResults.length>0);
     
     return (
       <View className='container'>
@@ -141,6 +147,32 @@ export default class Search extends Component {
           onConfirm={this.onConfirm}
           onScan={this.onScan}
         />
+        {showHistory && (
+          <View className='history-container'>
+            <View className='at-row at-row__align--center'>
+              <View className='history-title at-col'>搜索历史</View>
+              <View
+                className='history-delete at-col'
+                onClick={this.onDeleteHistory}
+              >
+                <View className='at-icon at-icon-trash' />
+                {/* 清除 */}
+              </View>
+            </View>
+            {history.map(item => {
+              return (
+                <AtTag
+                  className='history-item'
+                  key={item}
+                  name={item}
+                  onClick={this.onClickTag}
+                >
+                  {item}
+                </AtTag>
+              );
+            })}
+          </View>
+        )}
 
         {showScan && (
           <View
@@ -149,6 +181,20 @@ export default class Search extends Component {
           >
             <View className='at-col'>扫描图书条形码</View>
             <Text className='scan-row__arrow at-icon at-icon-chevron-right at-col' />
+          </View>
+        )}
+        
+        {isSearching && (
+          <AtActivityIndicator mode='center' content='加载中...' />
+        )}
+
+        {isError && <NetworkError onClick={this.onReSearch} />}
+
+        {showResults && (
+          <View>
+            {searchResults.map(item => (
+              <BookCard data={item} key={item.id} />
+            ))}
           </View>
         )}
         

@@ -1,4 +1,5 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro";
 import { View, Navigator, Image, Text } from "@tarojs/components";
 import PropTypes from "prop-types";
 import URL from "../../constants/urls";
@@ -42,7 +43,7 @@ export default class BookCard extends Component {
       >
         <Image
           className='at-col at-col--auto my-book-card__img'
-          style={{ marginRight: Taro.pxTransform(24) }}
+          style={{ marginRight: Taro.pxTransform(24, 750) }}
           src={data.image}
           mode='aspectFill'
         />

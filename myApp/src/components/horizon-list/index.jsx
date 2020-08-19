@@ -1,4 +1,5 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro";
 import { View, ScrollView, Navigator, Image } from "@tarojs/components";
 import PropTypes from "prop-types";
 import URL from "../../constants/urls";
@@ -27,7 +28,7 @@ export default class HorizonList extends Component {
   render() {
     const { isBook, data, sideSpace } = this.props;
     const url = isBook ? URL.BOOK_DETAIL : URL.BOOK_LIST_DETAIL;
-
+    debugger
     // 以rpx为单位计算图片宽高
     let imgWidth, imgHeight;
     imgWidth = (750 - 24 * 2 - sideSpace * 2) / 3; // 24是两张图片之间的距离
@@ -43,7 +44,7 @@ export default class HorizonList extends Component {
                 url={`${url}?id=${item.id}`}
                 className='my-horizon-list-item'
                 hoverClass='None'
-                style={{ width: Taro.pxTransform(imgWidth) }}
+                style={{ width: Taro.pxTransform(imgWidth, 750) }}
               >
                 <Image
                   className={
@@ -52,16 +53,16 @@ export default class HorizonList extends Component {
                       : "my-horizon-list-item__booklist"
                   }
                   style={{
-                    width: Taro.pxTransform(imgWidth),
+                    width: Taro.pxTransform(imgWidth, 750),
                     height: isBook
-                      ? Taro.pxTransform(imgHeight)
-                      : Taro.pxTransform(imgWidth)
+                      ? Taro.pxTransform(imgHeight, 750)
+                      : Taro.pxTransform(imgWidth, 750)
                   }}
                   src={item.image}
                   mode='aspectFill'
                 />
                 <View className='my-horizon-list-item__title'>
-                  {item.title}
+                  {item.title}{`${url}?id=${item.id}`}
                 </View>
                 {isBook && (
                   <View className='my-horizon-list-item__author'>

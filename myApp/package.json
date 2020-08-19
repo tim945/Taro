@@ -9,6 +9,7 @@
     "css": "sass"
   },
   "scripts": {
+    "serv": "node mock/server.js",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -42,6 +43,7 @@
     "@tarojs/runtime": "3.0.7",
     "@tarojs/taro": "3.0.7",
     "lodash": "4.17.15",
+    "mockjs": "^1.1.0",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-redux": "^7.2.1",
@@ -54,14 +56,18 @@
     "@babel/core": "^7.8.0",
     "@tarojs/mini-runner": "3.0.7",
     "@tarojs/webpack-runner": "3.0.7",
+    "@types/react": "^16.0.0",
     "@types/webpack-env": "^1.13.6",
     "babel-preset-taro": "3.0.7",
+    "browser-sync": "^2.26.12",
     "eslint": "^6.8.0",
     "eslint-config-taro": "3.0.7",
-    "stylelint": "9.3.0",
-    "@types/react": "^16.0.0",
-    "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react-hooks": "^1.6.1"
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.5.0",
+    "json-server": "^0.16.1",
+    "stylelint": "9.3.0"
   }
 }

@@ -108,7 +108,8 @@ export default class SearchBar extends Component {
           <View
             className='my-search-bar__clear'
             style={clearIconStyle}
-            onTouchStart={this.handleClear}
+            // onTouchStart={this.handleClear}
+            onClick={this.handleClear} 
           >
             <Text className='at-icon at-icon-close' />
           </View>
