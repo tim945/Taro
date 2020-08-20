@@ -5,6 +5,8 @@ import { View, Text } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import { getNewBooks, getHotBooks, getRecommendBooks } from "@store/home/action"
 import URL from "../../constants/urls"
+import Panel from "../../components/panel";
+import HorizonList from "../../components/horizon-list";
 import FakeSearchBar from "../../components/fake-search-bar";
 
 import './index.scss'
@@ -21,22 +23,37 @@ const mapDispatchToProps  = {
   dispatchGetRecommendBooks: getRecommendBooks
 }
 
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
 
   constructor() {
     super(...arguments);
   }
 
-  componentWillMount () { }
+  componentWillMount () { 
+    console.log('home.componentWillMount')
+  }
 
-  componentDidMount () { }
+  componentDidMount () { 
+    console.log('home.componentDidMount')
+    this.props.dispatchGetNewBooks();
+    this.props.dispatchGetHotBooks();
+    this.props.dispatchGetRecommendBooks();
+  }
 
-  componentWillUnmount () { }
+  componentWillUnmount () { 
+    console.log('home.componentWillUnmount')
+  }
 
-  componentDidShow () { }
+  componentDidShow () { 
+    console.log('home.componentDidShow')
+  }
 
-  componentDidHide () { }
+  componentDidHide () { 
+    console.log('home.componentDidHide')
+  }
 
+  // 跳转到搜索
   onClickSearchBar = () => {
     Taro.navigateTo({ url: URL.SEARCH })
   }
@@ -45,6 +62,27 @@ export default class Home extends Component {
     return (
       <View>
         <FakeSearchBar onClick={this.onClickSearchBar} />
+        <Panel
+          url={`${URL.BOOK_LIST}?type=new`}
+          title='新书速递'
+          className='panel--first'
+        >
+          <HorizonList data={this.props.newBooks} />
+        </Panel>
+        <Panel
+          url={`${URL.BOOK_LIST}?type=hot`}
+          title='近期热门'
+          className='margin-top-lg'
+        >
+          <HorizonList data={this.props.hotBooks} />
+        </Panel>
+        <Panel
+          url={`${URL.BOOK_LIST}?type=recommend`}
+          title='为你推荐'
+          className='margin-top-lg'
+        >
+          <HorizonList data={this.props.recommendBooks} />
+        </Panel>
       </View>
     )
   }

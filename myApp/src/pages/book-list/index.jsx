@@ -1,11 +1,18 @@
-import Taro, { Component } from "@tarojs/taro";
+import React, { Component } from 'react'
+import Taro from "@tarojs/taro";
+import { connect } from "react-redux";
 import { View } from "@tarojs/components";
-import { AtMessage, AtNoticebar } from "taro-ui";
-import { connect } from "@tarojs/redux";
+import { AtMessage, AtNoticebar, AtActivityIndicator } from "taro-ui";
 import { disfavorBookById } from "../../store/home/action";
 import BookCard from "../../components/book-card";
 
 import "./index.scss";
+
+const mapTitle = {
+  'new': '新书速递',
+  'hot': '近期热门',
+  'recommend': '为你推荐',
+}
 
 @connect(
   ({ home }) => ({
@@ -18,34 +25,28 @@ import "./index.scss";
   }
 )
 export default class BookList extends Component {
-  config = {
-    navigationBarTitleText: ""
-  };
 
   constructor() {
     super(...arguments);
-    this.state = { isShowNoticebar: true };
+    this.state = { isShowNoticebar: true, isFetching: true };
     this.onLongPress = this.onLongPress.bind(this);
   }
 
   componentDidMount() {
-    const { type } = this.$router.params;
-    switch (type) {
-      case "new":
-        return Taro.setNavigationBarTitle({ title: "新书速递" });
-      case "hot":
-        return Taro.setNavigationBarTitle({ title: "近期热门" });
-      case "recommend":
-        return Taro.setNavigationBarTitle({ title: "为你推荐" });
-    }
+    const { type } = Taro.getCurrentInstance().router.params    
+    Taro.setNavigationBarTitle({title:mapTitle[type]});
+    this.setState({
+      isFetching: false
+    })
   }
 
-  onLongPress(id) {
+  onLongPress = (id) => {
     Taro.showActionSheet({
       itemList: ["不感兴趣"]
     })
       .then(() => {
-        this.props.dispatchDisfavorBook(id, this.$router.params.type);
+        const { type } = Taro.getCurrentInstance().router.params
+        this.props.dispatchDisfavorBook(id, type);
         Taro.atMessage({ message: "我们会减少此图书的出现频率" });
       })
       .catch(e => {
@@ -53,13 +54,15 @@ export default class BookList extends Component {
       });
   }
 
-  onCloseNoticebar() {
+  onCloseNoticebar = () => {
     this.setState({ isShowNoticebar: false });
   }
 
   render() {
     let data;
-    const { type } = this.$router.params;
+    const { isFetching } = this.state;
+    const { type } = Taro.getCurrentInstance().router.params
+    
     switch (type) {
       case "new":
         data = this.props.newBooks;
@@ -82,6 +85,10 @@ export default class BookList extends Component {
         {data.map(item => (
           <BookCard data={item} key={item.id} onLongPress={this.onLongPress} />
         ))}
+
+        {isFetching && (
+          <AtActivityIndicator mode='center' content='加载中...' />
+        )}
       </View>
     );
   }

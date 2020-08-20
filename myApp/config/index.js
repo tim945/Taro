@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-18 09:32:53
  * @LastEditors: tim
- * @LastEditTime: 2020-08-18 15:46:45
+ * @LastEditTime: 2020-08-20 11:18:16
  * @Description: 
  */
 const path = require("path");
@@ -47,6 +47,7 @@ const config = {
 
         }
       },
+      // 小程序端样式引用本地资源内联配置
       url: {
         enable: true,
         config: {
@@ -60,7 +61,9 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    // 自定义 Webpack 配置
+    webpackChain: {},
   },
   h5: {
     publicPath: '/',
@@ -79,7 +82,10 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    // 自定义 Webpack 配置
+    webpackChain: {},
+    devServer: {}
   }
 }
 

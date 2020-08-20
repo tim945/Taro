@@ -8,11 +8,7 @@ import HorizonList from "../../components/horizon-list";
 
 import "./index.scss";
 
-export default class BookDetail extends Component {
-  config = {
-    navigationBarTitleText: "图书详情"
-  };
-
+export default class BookDetail extends Component { 
   state = {
     book: {},
     isFetching: true,

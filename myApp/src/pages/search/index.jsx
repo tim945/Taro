@@ -58,7 +58,7 @@ export default class Search extends Component {
       searchResults: []
     });
     try {
-      let data = await API.get(`/books?keyword=${value}`);
+      let data = await API.get(`/books?keyword=${value}&_page=1&_limit=20`);
       
       this.setState({
         isSearching: false,
@@ -79,6 +79,14 @@ export default class Search extends Component {
   }
 
   onScan() {
+    if (Taro.getEnv() !== 'weapp') {
+      Taro.showToast({
+        title: '仅在微信中支持',
+        icon: 'none',
+        duration: 3000,
+      })
+      return
+    } 
     Taro.scanCode({ scanType: ["barCode"] })
       .then(res => {
         if (!isISBN(res.result)) {

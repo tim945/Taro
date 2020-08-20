@@ -1,3 +1,10 @@
+/*
+ * @Author: tim
+ * @Date: 2020-08-18 09:59:02
+ * @LastEditors: tim
+ * @LastEditTime: 2020-08-20 14:22:01
+ * @Description: 
+ */
 import * as HOME from "./action-type";
 
 const defaultState = {
@@ -36,13 +43,13 @@ const defaultState = {
 const home = (state = defaultState, action) => {
   switch (action.type) {
     case HOME.GET_NEW_BOOK:
-      return { ...state, newBooks: state.newBooks.concat(action.books) };
+      return { ...state, newBooks: action.books };
     case HOME.GET_HOT_BOOK:
-      return { ...state, hotBooks: state.hotBooks.concat(action.books) };
+      return { ...state, hotBooks: action.books };
     case HOME.GET_RECOMMEND_BOOK:
       return {
         ...state,
-        recommendBooks: state.recommendBooks.concat(action.books)
+        recommendBooks: action.books
       };
     case HOME.DISFAVOR:
       switch (action.bookType) {

@@ -28,7 +28,7 @@ export default class HorizonList extends Component {
   render() {
     const { isBook, data, sideSpace } = this.props;
     const url = isBook ? URL.BOOK_DETAIL : URL.BOOK_LIST_DETAIL;
-    debugger
+    
     // 以rpx为单位计算图片宽高
     let imgWidth, imgHeight;
     imgWidth = (750 - 24 * 2 - sideSpace * 2) / 3; // 24是两张图片之间的距离
@@ -62,7 +62,7 @@ export default class HorizonList extends Component {
                   mode='aspectFill'
                 />
                 <View className='my-horizon-list-item__title'>
-                  {item.title}{`${url}?id=${item.id}`}
+                  {item.title}
                 </View>
                 {isBook && (
                   <View className='my-horizon-list-item__author'>

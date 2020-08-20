@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-19 10:51:43
  * @LastEditors: tim
- * @LastEditTime: 2020-08-19 14:48:19
+ * @LastEditTime: 2020-08-20 10:15:47
  * @Description: mock 数据源
  */
 
@@ -17,6 +17,13 @@ var allBooks = Mock.Random.shuffle([
   ...hotBooks,
   ...recommendBooks
 ]); // 默认数组 6*3 -> 18条数据
+
+// 并入第2层的关联数组到第一层数据
+var relatedBooks = allBooks.reduce((relatedBooks, book) => {
+  return relatedBooks.concat(book.related_books)
+}, [])
+
+allBooks = [].concat(allBooks, relatedBooks)
 
 /**
  * json-server不支持嵌套访问，如'books/new'

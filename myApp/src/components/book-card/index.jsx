@@ -28,8 +28,8 @@ export default class BookCard extends Component {
     onLongPress: PropTypes.func
   };
 
-  onLongPress() {
-    this.props.onLongPress(this.state.data.id);
+  onLongPress = () => {
+    this.props.onLongPress(this.props.data.id);
   }
 
   render() {
