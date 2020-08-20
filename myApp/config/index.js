@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-18 09:32:53
  * @LastEditors: tim
- * @LastEditTime: 2020-08-20 11:18:16
+ * @LastEditTime: 2020-08-20 16:26:34
  * @Description: 
  */
 const path = require("path");
@@ -61,9 +61,7 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    },
-    // 自定义 Webpack 配置
-    webpackChain: {},
+    }
   },
   h5: {
     publicPath: '/',
@@ -82,10 +80,7 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    },
-    // 自定义 Webpack 配置
-    webpackChain: {},
-    devServer: {}
+    }    
   }
 }
 

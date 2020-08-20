@@ -11,7 +11,7 @@
     padding: $spacing-v-lg $spacing-h-lg;
     font-size: $font-size-base;
     @include active;
-    @include hairline-bottom-relative($left: $spacing-h-lg);
+    // @include hairline-bottom-relative($left: $spacing-h-lg);
     &__arrow {
       flex: none;
       width: auto;
