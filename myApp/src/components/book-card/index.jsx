@@ -29,17 +29,19 @@ export default class BookCard extends Component {
   };
 
   onLongPress = () => {
+    console.log('1111')
     this.props.onLongPress(this.props.data.id);
   }
 
   render() {
     const { data, showArrow } = this.props;
     return (
+      // onLongPress 若直接加在 Navigator 属性,微信环境没效果
+      <View onLongPress={this.onLongPress}>
       <Navigator
         className='at-row at-row__align--start my-book-card'
         hoverClass='None'
-        url={`${URL.BOOK_DETAIL}?id=${data.id}`}
-        onLongPress={this.onLongPress}
+        url={`${URL.BOOK_DETAIL}?id=${data.id}`}        
       >
         <Image
           className='at-col at-col--auto my-book-card__img'
@@ -65,6 +67,7 @@ export default class BookCard extends Component {
           />
         )}
       </Navigator>
+      </View>
     );
   }
 }

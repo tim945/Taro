@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import Taro from "@tarojs/taro";
 import { connect } from 'react-redux'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import { add, minus, asyncAdd } from "../../store/counter/action" // diapatch action
 
@@ -45,6 +46,19 @@ export default class Index extends Component {
     console.log('componentDidHide')
   }
 
+  onLongPress = () => {
+    console.log('onLongPress')
+    Taro.showActionSheet({
+      itemList: ["不感兴趣"]
+    })
+      .then(() => {
+        console.log("choose")
+      })
+      .catch(e => {
+        console.log("取消点击", e);
+      });
+  }
+
   render () {
     return (
       <View>
@@ -61,6 +75,13 @@ export default class Index extends Component {
           </View>
         </View>        
         <Text>{this.props.counter.num}</Text>
+
+        <View onLongPress={this.onLongPress}>       
+        <Image
+          style='width: 300px;height: 100px;background: #fff;'
+          src='https://storage.jd.com/taro-jd-com/static/cdc.png'          
+        />
+      </View>
       </View>
     )
   }

@@ -40,7 +40,8 @@ export default class BookList extends Component {
     })
   }
 
-  onLongPress = (id) => {
+  onLongPress (id) {
+    console.log('onLongPress')
     Taro.showActionSheet({
       itemList: ["不感兴趣"]
     })

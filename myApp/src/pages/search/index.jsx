@@ -79,7 +79,8 @@ export default class Search extends Component {
   }
 
   onScan() {
-    if (Taro.getEnv() !== 'weapp') {
+    console.log(Taro.getEnv(), Taro.ENV_TYPE)
+    if (Taro.getEnv() !== 'WEAPP') {
       Taro.showToast({
         title: '仅在微信中支持',
         icon: 'none',
