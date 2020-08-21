@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-18 09:32:53
  * @LastEditors: tim
- * @LastEditTime: 2020-08-21 10:36:53
+ * @LastEditTime: 2020-08-21 17:28:01
  * @Description: 
  */
 
@@ -13,6 +13,8 @@ export default {
     'pages/search/index',
     'pages/book-detail/index',
     'pages/book-list/index',
+    'pages/city/index',
+    'pages/tabs/index',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -28,18 +30,18 @@ export default {
         iconPath: "./assets/tab_home.png",
         selectedIconPath: "./assets/tab_home_f.png"
       },
-      // {
-      //   pagePath: "pages/book-list/index?type=new",
-      //   text: "新书",
-      //   iconPath: "./assets/tab_me.png",
-      //   selectedIconPath: "./assets/tab_me_f.png"
-      // },
-      // {
-      //   pagePath: "pages/book-list/index?type=hot",
-      //   text: "热门",
-      //   iconPath: "./assets/tab_me.png",
-      //   selectedIconPath: "./assets/tab_me_f.png"
-      // },
+      {
+        pagePath: "pages/city/index",
+        text: "城市",
+        iconPath: "./assets/tab_member.png",
+        selectedIconPath: "./assets/tab_member.png"
+      },
+      {
+        pagePath: "pages/tabs/index",
+        text: "Tabs",
+        iconPath: "./assets/tab_buy.png",
+        selectedIconPath: "./assets/tab_buy.png"
+      },
       {
         pagePath: "pages/index/index",
         text: "测试",

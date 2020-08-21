@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Taro from "@tarojs/taro";
 import { connect } from 'react-redux'
-import { View, Text, Image } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import { View, Text, Image, Picker } from '@tarojs/components'
+import { AtButton, AtList, AtListItem } from 'taro-ui'
 import { add, minus, asyncAdd } from "../../store/counter/action" // diapatch action
 
 import './index.scss'
@@ -25,6 +25,12 @@ const mapDispatchToProps  = (dispatch) => ({
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Index extends Component {
+  state = {
+    selector: ['美国', '中国', '巴西', '日本'],
+    selectorChecked: '中国',
+    timeSel: '01:02',
+    dateSel: '2020-08-22'
+  }
 
   componentWillMount () {
     console.log('componentWillMount')
@@ -46,18 +52,22 @@ export default class Index extends Component {
     console.log('componentDidHide')
   }
 
-  onLongPress = () => {
-    console.log('onLongPress')
-    Taro.showActionSheet({
-      itemList: ["不感兴趣"]
+  onChange = e => {
+    this.setState({
+      selectorChecked: this.state.selector[e.detail.value]
     })
-      .then(() => {
-        console.log("choose")
-      })
-      .catch(e => {
-        console.log("取消点击", e);
-      });
   }
+  onTimeChange = e => {
+    this.setState({
+      timeSel: e.detail.value
+    })
+  }
+  onDateChange = e => {
+    this.setState({
+      dateSel: e.detail.value
+    })
+  }
+  
 
   render () {
     return (
@@ -65,23 +75,61 @@ export default class Index extends Component {
         <Text>Hello world!</Text>
         <View className='at-row'>
           <View className='at-col'>
-            <AtButton type='primary' circle={true} onClick={this.props.add}>+</AtButton>
+            <AtButton type='primary' size='small' circle={true} onClick={this.props.add}>+</AtButton>
           </View>
           <View className='at-col'>
-            <AtButton type='primary' circle={true} onClick={this.props.minus}>-</AtButton>
+            <AtButton type='primary' size='small' circle={true} onClick={this.props.minus}>-</AtButton>
           </View>
           <View className='at-col'>
-            <AtButton type='secondary' circle={true} onClick={this.props.asyncAdd}>async add</AtButton>
+            <AtButton type='secondary' size='small' circle={true} onClick={this.props.asyncAdd}>async add</AtButton>
           </View>
         </View>        
         <Text>{this.props.counter.num}</Text>
 
         <View onLongPress={this.onLongPress}>       
-        <Image
-          style='width: 300px;height: 100px;background: #fff;'
-          src='https://storage.jd.com/taro-jd-com/static/cdc.png'          
-        />
-      </View>
+          <Image
+            style='width: 300px;height: 100px;background: #fff;'
+            src='https://storage.jd.com/taro-jd-com/static/cdc.png'          
+          />
+        </View>
+
+        <View className='container'>
+          <View className='page-body'>
+            <View className='page-section'>
+              <Text>地区选择器</Text>
+              <View>
+                <Picker mode='selector' range={this.state.selector} value='1' onChange={this.onChange}>
+                  <AtList>
+                    <AtListItem
+                      title='国家地区'
+                      extraText={this.state.selectorChecked}
+                    />
+                  </AtList>
+                </Picker>
+              </View>
+            </View>
+            <View className='page-section'>
+              <Text>时间选择器</Text>
+              <View>
+                <Picker mode='time' value={this.state.timeSel} onChange={this.onTimeChange}>
+                  <AtList>
+                    <AtListItem title='请选择时间' extraText={this.state.timeSel} />
+                  </AtList>
+                </Picker>
+              </View>
+            </View>
+            <View className='page-section'>
+              <Text>日期选择器</Text>
+              <View>
+                <Picker mode='date' onChange={this.onDateChange}>
+                  <AtList>
+                    <AtListItem title='请选择日期' extraText={this.state.dateSel} />
+                  </AtList>
+                </Picker>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
     )
   }
