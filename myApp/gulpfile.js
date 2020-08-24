@@ -1,4 +1,12 @@
+/*
+ * @Author: tim
+ * @Date: 2020-08-19 14:28:28
+ * @LastEditors: tim
+ * @LastEditTime: 2020-08-24 15:04:54
+ * @Description: 
+ */
 // mock相关
+// json-server --watch db.js 只能监听一个文件？ 分接口文件不会自动更新
 // 命令行执行：gulp mock 可以启动mock服务
 
 const path = require("path");
@@ -9,10 +17,10 @@ const browserSync = require("browser-sync").create();
 const server = path.resolve(__dirname, "mock");
 // browser-sync配置，配置里启动nodemon任务
 gulp.task("browser-sync", ["nodemon"], function() {
-  browserSync.init(null, {
-    proxy: "http://localhost:8080", // 这里的端口和webpack的端口一致
-    port: 8081
-  });
+  // browserSync.init(null, {
+  //   proxy: "http://localhost:8080", // 这里的端口和webpack的端口一致
+  //   port: 8081
+  // });
 });
 // browser-sync 监听文件
 gulp.task("mock", ["browser-sync"], function() {
@@ -20,9 +28,9 @@ gulp.task("mock", ["browser-sync"], function() {
 });
 // 延时刷新
 gulp.task("bs-delay", function() {
-  setTimeout(function() {
-    browserSync.reload();
-  }, 1000);
+  // setTimeout(function() {
+  //   browserSync.reload();
+  // }, 1000);
 });
 // 服务器重启
 gulp.task("nodemon", function(cb) {

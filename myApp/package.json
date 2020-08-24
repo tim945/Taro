@@ -10,6 +10,7 @@
   },
   "scripts": {
     "serv": "node mock/server.js",
+    "serv:mock": "gulp mock",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
