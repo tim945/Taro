@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro';
 import { View, Image, Text, Input, Textarea } from '@tarojs/components';
 import SearchInput from '@/components/searchInput/index';
 import { getTitleDetlData } from '@/api/index';
+import editPng from '@/assets/images/edit.png'
 import './titleDetail.scss';
 
 class TitleDetail extends Component {
@@ -101,7 +102,7 @@ class TitleDetail extends Component {
           />
           {/* 提问 */}
           <View className="search-button">
-            <Image className="search-button-icon" src={require('../../assets/images/edit.png')} />
+            <Image className="search-button-icon" src={editPng} />
             <Text className="search-button-text" onClick={this.showQuesMask}>
               提问
             </Text>
