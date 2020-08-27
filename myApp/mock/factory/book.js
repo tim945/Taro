@@ -2,12 +2,12 @@ var Mock = require("mockjs");
 
 var Random = Mock.Random;
 
-const p = [
-  'https://storage.jd.com/taro-jd-com/static/cdc.png', 
-  'https://storage.jd.com/taro-jd-com/static/cdc.png', 
-  'https://storage.jd.com/taro-jd-com/static/cdc.png', 
-  'https://storage.jd.com/taro-jd-com/static/cdc.png'
-]
+// const p = [
+//   'https://storage.jd.com/taro-jd-com/static/cdc.png', 
+//   'https://storage.jd.com/taro-jd-com/static/cdc.png', 
+//   'https://storage.jd.com/taro-jd-com/static/cdc.png', 
+//   'https://storage.jd.com/taro-jd-com/static/cdc.png'
+// ]
 
 // const images = [
 //   ...p,

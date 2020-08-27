@@ -33,6 +33,8 @@ export default class BookList extends Component {
   }
 
   componentDidMount() {
+    console.log(Taro.atMessage)
+
     const { type } = Taro.getCurrentInstance().router.params    
     Taro.setNavigationBarTitle({title:mapTitle[type]});
     this.setState({
@@ -41,7 +43,7 @@ export default class BookList extends Component {
   }
 
   onLongPress (id) {
-    console.log('onLongPress')
+    console.log('onLongPress', Taro.atMessage)
     Taro.showActionSheet({
       itemList: ["不感兴趣"]
     })

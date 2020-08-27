@@ -2,7 +2,7 @@
  * @Author: tim
  * @Date: 2020-08-18 09:32:53
  * @LastEditors: tim
- * @LastEditTime: 2020-08-19 14:14:46
+ * @LastEditTime: 2020-08-26 10:18:58
  * @Description: 
  */
 import React, { Component } from 'react'
@@ -18,7 +18,9 @@ class App extends Component {
 
   componentDidMount () {}
 
-  componentDidShow () {}
+  componentDidShow () {
+    /* 这里有你想要的路由信息 */
+  }
 
   componentDidHide () {}
 

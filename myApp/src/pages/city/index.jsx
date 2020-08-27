@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Taro from "@tarojs/taro";
 import { View } from "@tarojs/components";
-import { AtIndexes, AtSearchBar } from 'taro-ui'
+import { AtIndexes, AtSearchBar, AtMessage } from 'taro-ui'
 
 export default class City extends Component {
   constructor () {
@@ -9,6 +9,10 @@ export default class City extends Component {
     this.state = {
       value: ''
     }
+  }
+
+  componentDidMount() {
+    console.log(Taro.showActionSheet, Taro.atMessage)
   }
 
   onChange (value) {
@@ -65,6 +69,7 @@ export default class City extends Component {
     ]
     return (
       <View style='height:100vh'>
+        <AtMessage />
         <AtIndexes
           list={list}
           onScrollIntoView={fn => { this.scrollIntoView = fn }}

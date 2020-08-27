@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Taro from "@tarojs/taro";
 import { connect } from 'react-redux'
 import { View, Text, Image, Picker } from '@tarojs/components'
-import { AtButton, AtList, AtListItem } from 'taro-ui'
+import { AtButton, AtList, AtListItem, AtMessage, AtNoticebar, AtActivityIndicator  } from 'taro-ui'
 import { add, minus, asyncAdd } from "../../store/counter/action" // diapatch action
 
 import './index.scss'
@@ -37,7 +37,7 @@ export default class Index extends Component {
   }
 
   componentDidMount () { 
-    console.log('componentDidMount')
+    console.log('componentDidMount', Taro.atMessage)
   }
 
   componentWillUnmount () { 
@@ -67,11 +67,28 @@ export default class Index extends Component {
       dateSel: e.detail.value
     })
   }
+
+  onLongPress () {
+    console.log('onLongPress', Taro.atMessage)
+    Taro.showActionSheet({
+      itemList: ["不感兴趣"]
+    })
+      .then(() => {
+        const { type } = Taro.getCurrentInstance().router.params
+        // this.props.dispatchDisfavorBook(id, type);
+        console.log('不感兴趣', Taro.atMessage)
+        Taro.atMessage({ message: "我们会减少此图书的出现频率" });  // 此处页面须引入组件 <AtMessage />
+      })
+      .catch(e => {
+        console.log("取消点击", e);
+      });
+  }
   
 
   render () {
     return (
       <View>
+        <AtMessage />
         <Text>Hello world!</Text>
         <View className='at-row'>
           <View className='at-col'>

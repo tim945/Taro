@@ -3,6 +3,8 @@ import Taro from "@tarojs/taro";
 import { View, ScrollView } from "@tarojs/components";
 import { AtTabs, AtTabsPane } from 'taro-ui'
 
+import './index.scss'
+
 export default class City extends Component {
   constructor () {
     super(...arguments)
@@ -23,6 +25,17 @@ export default class City extends Component {
 
   onScroll(e){
     console.log(e.detail)
+  }
+
+  getScrollViewHeight = () => {
+    Taro.getSystemInfo().then(res => {
+      let winHeight = res.windowHeight
+      let tabHeader = uni.createSelectorQuery().select(".my-tabs>.at-tabs__header"); //想要获取高度的元素名（class/id）
+
+      tabHeader.boundingClientRect(data=>{
+          // this.scrollHeight=winHeight-data.top  //计算高度：元素高度=窗口高度-元素距离顶部的距离（data.top）
+      }).exec()
+    })
   }
 
   render () {
@@ -48,7 +61,7 @@ export default class City extends Component {
     }
 
     return (
-      <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+      <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)} className='my-tabs'>
         <AtTabsPane current={this.state.current} index={0} >
           {/* <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;' >标签页一的内容</View> */}
           <ScrollView
@@ -62,6 +75,9 @@ export default class City extends Component {
             onScrollToUpper={this.onScrollToUpper}
             onScroll={this.onScroll}
           >
+            <View style={vStyleA}>A</View>
+            <View style={vStyleB}>B</View>
+            <View style={vStyleC}>C</View>
             <View style={vStyleA}>A</View>
             <View style={vStyleB}>B</View>
             <View style={vStyleC}>C</View>

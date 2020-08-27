@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins/index.scss";
+
+.my-tabs {
+  display: flex;
+  flex-direction: column;
+  .at-tabs__header {
+
+  }
+  .at-tabs__body {
+    flex: 1;
+  }
+}

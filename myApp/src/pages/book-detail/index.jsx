@@ -52,6 +52,9 @@ export default class BookDetail extends Component {
         isFetching: false,
         isError: false
       });
+
+      // 设置标题
+      Taro.setNavigationBarTitle({title:this.state.book.title});
     } catch (e) {
       this.setState({
         isFetching: false,
