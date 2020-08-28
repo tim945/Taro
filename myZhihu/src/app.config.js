@@ -2,17 +2,17 @@
  * @Author: tim
  * @Date: 2020-08-26 16:37:09
  * @LastEditors: tim
- * @LastEditTime: 2020-08-27 17:38:17
+ * @LastEditTime: 2020-08-28 14:21:39
  * @Description: 
  */
 export default {
   pages: [
     'pages/index/index',
-    // 'pages/findMore/findMore',
-    // 'pages/market/market',
-    // 'pages/message/message',
-    // 'pages/userCenter/userCenter',
-    // 'pages/searchResult/searchResult',
+    'pages/findMore/findMore',
+    'pages/market/market',
+    'pages/message/message',
+    'pages/userCenter/userCenter',
+    'pages/searchResult/searchResult',
     'pages/titleDetail/titleDetail',
     // 'pages/contentDetail/contentDetail'
   ],

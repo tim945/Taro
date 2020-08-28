@@ -49,9 +49,9 @@ class SearchInput extends Component {
           Taro.setStorageSync('searchHistory', { data: that.state.historyList });
         }
       );
-    // Taro.navigateTo({
-    //   url: '/pages/searchResult/searchResult?key=' + event.detail.value
-    // });
+    Taro.navigateTo({
+      url: '/pages/searchResult/searchResult?key=' + event.detail.value
+    });
   };
   // 删除搜索历史每条item
   clearItem = (event, index) => {
