@@ -16,6 +16,37 @@ class UserCenter extends Component {
     };
   }
 
+  onLoad(options) {
+    // Do some initialize when page load.
+    console.log('onLoad')
+  }
+  onShow() {
+    // Do something when page show.
+    console.log('onShow')
+  }
+  onReady() {
+    // Do something when page ready.
+    console.log('onReady')
+  }
+  onHide() {
+    // Do something when page hide.
+    console.log('onHide')
+  }
+  onUnload() {
+    // Do something when page close.
+    console.log('onUnload')
+  }
+  onPullDownRefresh() {
+    // 支持小程序
+    // Do something when pull down.
+    console.log('onPullDownRefresh')
+    Taro.stopPullDownRefresh()
+  }
+  onReachBottom() {
+    // Do something when page reach bottom.
+    console.log('onReachBottom')
+  }
+
   // 获取用户列表API
   getUserCenterList = () => {
     let that = this;
@@ -36,8 +67,15 @@ class UserCenter extends Component {
   };
 
   componentDidMount() {
+    setTimeout(() => Taro.startPullDownRefresh({
+      complete() {
+        setTimeout(() => Taro.stopPullDownRefresh(), 3000)
+      }
+    }), 3000)
+
     this.getUserCenterList();
   }
+
   render() {
     const { userCenterList } = this.state;
     return (
