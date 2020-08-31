@@ -4,8 +4,12 @@ page {
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  padding-top: 100px;
+  // padding-top: 100px;
   color: #323233;
+}
+
+.market-container {
+  margin-top: 100px;
 }
 
 /* 搜索 */
@@ -209,7 +213,7 @@ page {
 .market-swiper-wrap {
   width: 750px;
   height: 250px;
-  margin-top: 120px;
+  // margin-top: 120px;
 }
 
 .market-swiper-img {

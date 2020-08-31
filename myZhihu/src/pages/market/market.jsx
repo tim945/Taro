@@ -12,6 +12,8 @@ import bookPng from '@/assets/images/book.png'
 import guessPng from '@/assets/images/guess.png'
 import bestIcon from '@/assets/images/best-icon.png'
 import authIcon from '@/assets/images/auth-icon.png'
+import playPng from '@/assets/images/play.png'
+import playColorPng from '@/assets/images/play-color.png'
 import './market.scss';
 
 class Market extends Component {
@@ -136,7 +138,7 @@ class Market extends Component {
     const [partList0={}, partList1={}, partList2={}] = partList
 
     return (
-      <View className="container">
+      <View className="container market-container">
         <View className="search-wrap">
           {/* 提问 */}
           <SearchInput
@@ -198,7 +200,7 @@ class Market extends Component {
           {newsList.map(item => {
             return (
               <View className="market-news-item" key={item.id}>
-                <Image className="market-news-icon" src={require('../../assets/images/play.png')} />
+                <Image className="market-news-icon" src={playPng} />
                 <View className="market-news-title">{item.keyword + ' : ' + item.title}</View>
                 <View className="market-news-time">{item.time}</View>
               </View>
@@ -208,7 +210,7 @@ class Market extends Component {
             <View className="market-news-btn">
               <Image
                 className="market-news-img"
-                src={require('../../assets/images/play-color.png')}
+                src={playColorPng}
               />
               <View className="market-news-text">免费播放全部</View>
             </View>

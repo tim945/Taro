@@ -172,7 +172,7 @@ class FindMore extends Component {
       showIndex
     } = this.state;
     return (
-      <View>
+      <View className="search-container">
         <View className="find-header-wrap">
           <AtAvatar
             className="find-userinfo-avatar"
